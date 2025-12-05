@@ -2,27 +2,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Health))]
-public class BarHealthIngicator : MonoBehaviour, IHealthIndicator
+public class BarHealthIngicator : HealthIndicator
 {
     [SerializeField] protected Slider Slider;
 
-    private Health _health;
-
-    private void Awake()
+    protected override void Awake()
     {
-        _health = GetComponent<Health>();
-
+        base.Awake();
+        
         Slider.minValue = 0f;
-        Slider.maxValue = _health.MaxHealth;
-        Slider.value = _health.HealthValue;
+        Slider.maxValue = Health.Max;
+        Slider.value = Health.Value;
     }
 
-    private void OnEnable()
-        => _health.Changed += Display;
-
-    private void OnDisable()
-        => _health.Changed -= Display;
-
-    public virtual void Display(int healthValue)
+    protected override void Display(int healthValue)
         => Slider.value = healthValue;
 }

@@ -7,7 +7,7 @@ public class AnimatedBarHealthIndicator : BarHealthIngicator
 
     private Coroutine _coroutine;
 
-    public override void Display(int healthValue)
+    protected override void Display(int healthValue)
     {
         if (_coroutine != null)
             StopCoroutine(_coroutine);

@@ -1387,7 +1387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Slider: {fileID: 2050717647}
-  _interpolationStep: 0
+  _interpolationStep: 0.1
 --- !u!1 &1616604332
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,22 +1,16 @@
 using TMPro;
 using UnityEngine;
 
-[RequireComponent(typeof(Health))]
-public class TextHealthIndicator : MonoBehaviour, IHealthIndicator
+public class TextHealthIndicator : HealthIndicator
 {
     [SerializeField] private TextMeshProUGUI _text;
 
-    private Health _health;
+    protected override void Awake()
+    {
+        base.Awake();
+        Display(Health.Value);
+    }
 
-    private void Awake()
-        => _health = GetComponent<Health>();
-
-    private void OnEnable()
-        => _health.Changed += Display;
-
-    private void OnDisable()
-        => _health.Changed -= Display;
-
-    public void Display(int healthValue)
-        => _text.text = $"{_health.HealthValue}/{_health.MaxHealth}";
+    protected override void Display(int healthValue)
+        => _text.text = $"{healthValue}/{Health.Max}";
 }
